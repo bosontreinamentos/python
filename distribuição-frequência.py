@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on Fri Nov 27 17:35:33 2020
+Created on Sat Jan  2 17:26:09 2021
 
 @author: Fábio dos Reis
 """
@@ -17,8 +17,8 @@ lista=[]
 
 # Abrir arquivo csv e carregar seus dados na lista:
 with open(caminho,'r') as arqcsv:
-    listagem = csv.reader(arqcsv) #ler o arquivo
-    for linha in listagem:    #iterar por cada linha
+    linhas = csv.reader(arqcsv) #ler o arquivo
+    for linha in linhas:    #iterar por cada linha
         for item in linha:  #iterar por cada item da linha
             lista.append(int(item)) #adicionar item à lista
 
@@ -52,7 +52,7 @@ print("Amplitude de cada classe:",h)
 classes = []
 for i in range(K):
     classes.append(i+1)
-print(classes)
+print('Classes:',classes)
     
 # Função para determinar a frequência de cada valor na lista
 freqValor = {}
@@ -97,13 +97,29 @@ for i in range(K):
     inicioClasse = fimClasse + 1
 
 # Plotar histograma usando Matplotlib
-print(listaClasses)
-print(freqAbs)
 plt.style.use('ggplot')
 plt.hist(lista, bins = listaClasses)
 plt.title("Histograma");
 plt.show()
 
-""" TODO: Frequências relativas das classes (Fi) """
 
 # Frequências relativas das classes (Fi)
+freqRel = []
+for i in freqAbs:
+    freqRel.append((i / n) * 100)
+print('Fequências Relativas:\n',freqRel)
+
+# Mostrar tabela de frequências relativas fi
+inicioClasse = min(lista)
+print("\nTabela de Frequências Relativas")
+for i in range(K):
+    fimClasse = inicioClasse + h  
+    print('{} - {}: {:.2f}%'.format(inicioClasse,fimClasse,freqRel[i]))
+    inicioClasse = fimClasse + 1
+freqTotal = 0
+for i in freqRel:
+    freqTotal += i
+print('Total: {}%'.format(freqTotal)) 
+   
+''' TODO: Frequências absolutas e relativas acumuladas '''
+    
