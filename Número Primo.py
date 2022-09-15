@@ -25,14 +25,41 @@ def ePrimo(n):
     # Números iguais ou menores que 1 não são primos 
     if n <= 1:
         return False
- 
+
     # Verificar de 2 a n / 2
     for i in range(2, n//2):
         if n % i == 0:
-            return False
+            return 'Não é primo'
  
-    return True
- 
+    return 'Sim, o número é primo'
+
+"""
+Otimização
+
+Os fatores de um número ocorrem em pares.
+Se a é um fator do número n, então também existe um fator b tal que a x b = n.
+
+Pares de fatores - exemplo com o número 18:
+a↑  b↓  a x b
+1   18  1 x 18 = 18
+2   9   2 x 9 = 18
+3   6   3 x 6 = 18
+
+Excluindo 1 e o próprio número, se n não for divisível pelos fatores da coluna a, então também não é divisível pelos fatores da coluna b.
+Neste caso, o número é primo.
+
+Os valores de a se encontram abaixo da raiz quadrada de n. Assim, basta testar a divisibilidade de n até o valor de sua raiz - o que é muito mais rápido.
+
+# Método otimizado - Complexidade O(√n)
+import math
+def ePrimo(n):
+  for i in range(2, int(math.sqrt(n))+1):
+    if (n % i) == 0:
+      return 'Não é primo'
+  return 'Sim, o número é primo'
+"""
+
 # Testar
 num = int(input('Entre com o número:'))
 print(f'{num} é primo? {ePrimo(num)}')
+
