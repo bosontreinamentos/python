@@ -24,7 +24,7 @@ O único fator de n que é maior que n/2 é o próprio n.
 def ePrimo(n):
     # Números iguais ou menores que 1 não são primos 
     if n <= 1:
-        return False
+        return '1 não é número primo!'
 
     # Verificar de 2 a n / 2
     for i in range(2, n//2):
@@ -53,10 +53,15 @@ Os valores de a se encontram abaixo da raiz quadrada de n. Assim, basta testar a
 # Método otimizado - Complexidade O(√n)
 import math
 def ePrimo(n):
-  for i in range(2, int(math.sqrt(n))+1):
-    if (n % i) == 0:
-      return 'Não é primo'
-  return 'Sim, o número é primo'
+    # Números iguais ou menores que 1 não são primos 
+    if n <= 1:
+        return '1 não é número primo!'
+    
+    # Verificar de 2 a √n    
+    for i in range(2, int(math.sqrt(n)) + 1):
+        if (n % i) == 0:
+            return 'Não é primo'
+    return 'Sim, o número é primo'
 """
 
 # Testar
