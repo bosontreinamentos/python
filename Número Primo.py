@@ -68,3 +68,4 @@ def ePrimo(n):
 num = int(input('Entre com o número:'))
 print(f'{num} é primo? {ePrimo(num)}')
 
+# Referências: https://geekflare.com/prime-number-in-python/
